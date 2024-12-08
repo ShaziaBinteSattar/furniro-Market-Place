@@ -401,10 +401,10 @@ const SingleProduct = () => {
               <span className="text-sm font-medium text-gray-700">Share:</span>
               <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                 {['Facebook', 'Twitter', 'Instagram'].map((social) => (
-                  <div className='flex items-center justify-center gap-1'>
-                    <button key={social} 
+                  <div className='flex items-center justify-center gap-1' key={social}>
+                    <button  
                     className="w-5 h-5 rounded-full  bg-gray-700 
-                    hover:bg-blue-500 transition-colors">                 </button><p>{social}</p>
+                    hover:bg-blue-500 transition-colors">                 </button><p >{social}</p>
                     </div>
                 ))}
               </div>
