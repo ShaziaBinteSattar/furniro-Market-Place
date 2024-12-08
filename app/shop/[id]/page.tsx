@@ -12,6 +12,8 @@ import Navbar from '@/components/Navbar';
 import Banifits from '@/components/Banifits';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Cards from '@/components/Cards';
+import { toast } from 'sonner';
 
 const SingleProduct = () => {
 
@@ -270,7 +272,6 @@ const SingleProduct = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Enhanced image section with better badges */}
           <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100">
             <Image
               src={product.image || '/placeholder.jpg'}
@@ -291,7 +292,6 @@ const SingleProduct = () => {
             )}
           </div>
 
-          {/* Enhanced product details section */}
           <div className="flex flex-col space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl font-bold text-gray-900">{product.name}</h1>
@@ -316,7 +316,6 @@ const SingleProduct = () => {
 
             <p className="text-gray-600 leading-relaxed">{product.description}</p>
 
-            {/* Enhanced size selection */}
             <div className="space-y-3">
               <span className="text-sm font-medium text-gray-700">Select Size</span>
               <div className="flex gap-3">
@@ -333,7 +332,6 @@ const SingleProduct = () => {
               </div>
             </div>
 
-            {/* Enhanced color selection */}
             <div className="space-y-3">
               <span className="text-sm font-medium text-gray-700">Select Color</span>
               <div className="flex gap-3">
@@ -348,14 +346,22 @@ const SingleProduct = () => {
               </div>
             </div>
 
-            {/* Enhanced action buttons */}
             <div className="flex items-center gap-4">
               <div className="flex border-2 rounded-lg overflow-hidden">
                 <button className="px-4 py-3 hover:bg-gray-100 transition-colors">-</button>
                 <input type="text" value="1" className="w-16 text-center border-x-2" />
                 <button className="px-4 py-3 hover:bg-gray-100 transition-colors">+</button>
               </div>
-              <button className="flex-1 bg-orange-500 text-white py-3 px-6 rounded-lg
+              <button  
+      onClick={() =>
+        toast("Event has been created", {
+          description: "Sunday, December 03, 2023 at 9:00 AM",
+          action: {
+            label: "Undo",
+            onClick: () => console.log("Undo"),
+          },
+        })
+      } className="flex-1 bg-orange-500 text-white py-3 px-6 rounded-lg
                 hover:bg-orange-600 transition-colors font-medium">
                 Add To Cart
               </button>
@@ -364,16 +370,15 @@ const SingleProduct = () => {
               </button>
             </div>
 
-            {/* Enhanced social sharing */}
-            <div className="flex items-center gap-4 pt-6 border-t">
+            <div className="flex items-center  gap-4 pt-6 border-t">
               <span className="text-sm font-medium text-gray-700">Share:</span>
-              <div className="flex gap-3">
+              <div className="flex items-center justify-center gap-6 ">
                 {['Facebook', 'Twitter', 'Instagram'].map((social) => (
-                  <button key={social} 
-                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center
-                    hover:bg-gray-200 transition-colors">
-                    {/* Add social icons here */}
-                  </button>
+                  <div className='flex items-center justify-center gap-1'>
+                    <button key={social} 
+                    className="w-5 h-5 rounded-full  bg-gray-700 
+                    hover:bg-blue-500 transition-colors">                 </button><p>{social}</p>
+                    </div>
                 ))}
               </div>
             </div>
@@ -393,12 +398,21 @@ const SingleProduct = () => {
               Reviews ({product.reviews?.length || 0})
             </button>
           </div>
-          <div className="py-8">
+          <div className="py-8 pb-20 border-b-2">
             <p className="text-gray-600 leading-relaxed">
               {product.additionalInfo}
             </p>
           </div>
         </div>
+      </div>
+      <div className='m-10 text-center'>
+        
+       <h1 className='text-3xl m-10 font-bold'>
+        
+         Most Selling Products
+        </h1>
+
+      <Cards products={products}/>
       </div>
       <Banifits />
       <Footer />
