@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const Allhero = ({ src, page }: { src: any; page: string }) => {
+const Allhero = ({ src, page }: { src: { src: string }; page: string }) => {
   return (
     <div className="relative w-full h-[316px]">
       <div className="w-full h-full">
