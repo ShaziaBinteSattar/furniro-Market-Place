@@ -40,8 +40,10 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className='border-t-2 px-10 py-2 text-center md:text-left'>
-        <p>2023 furino. All rights reserved</p>
+      <div className='border-t-2 flex justify-between items-center  px-10 py-2 text-center md:text-left'>
+        <p>2025 furino. All rights reserved</p>
+        <p>Develop By Muhammad Farhan</p>
+        <a href='https://github.com/FarhanCodesLife/'>Github.com/FarhanCodesLife</a>
       </div>
     </footer>
   )
