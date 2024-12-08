@@ -114,7 +114,14 @@ const BlogPage = () => {
             </div>
           </aside>
         </div>
+        
       </main>
+      <div className='flex justify-center space-x-3 md:space-x-6 items-center p-4 md:p-8'>
+        <div className='px-3 md:px-4 py-2 cursor-pointer bg-[#FAF3EA] rounded-lg hover:bg-orange-800'>1</div>
+        <div className='px-3 md:px-4 py-2 cursor-pointer bg-[#FAF3EA] rounded-lg hover:bg-orange-800'>2</div>
+        <div className='px-3 md:px-4 py-2 cursor-pointer bg-[#FAF3EA] rounded-lg hover:bg-orange-800'>3</div>
+        <div className='px-3 md:px-4 py-2 cursor-pointer bg-[#FAF3EA] rounded-lg hover:bg-orange-800'>Next</div>
+    </div>
 <Banifits/>
       <Footer />
     </>

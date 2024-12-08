@@ -22,21 +22,22 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className=" ">
-      <div className=" w-full">
+    <div className="relative">
+      <div className="w-full">
         <Image
           src={heroimage}
           alt="Hero furniture image"
           width={1440}
           height={100}
           priority
-          className="w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] object-cover"
+          className="w-full h-[60vh] sm:h-[60vh] md:h-[70vh] lg:h-[90vh] object-cover"
         />
-        <div className="heroText bg-[#FFF3E3] w-[50%] md:w-[38rem] absolute 
-          top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-          md:top-[22%] md:left-[51%] md:transform-none
-          rounded-[6px] p-4 md:p-[3rem] mx-auto
-          sm:w-[80%] lg:w-[40rem]">
+        <div className=" bg-[#FFF3E3] 
+          w-[60%] max-w-[38rem] md:mx-auto ml-32
+          relative md:absolute 
+          md:top-[22%] md:left-[51%]
+          rounded-[6px] p-4 md:p-[3rem]
+          -mt-60 mb-20 md:mt-0">
           <h6 className="font-bold text-gray-500 text-xs sm:text-sm md:text-base">New Arrival</h6>
           <h3 className="text-[#B88E2F] font-poppins font-extrabold 
             text-lg sm:text-2xl md:text-[3.25rem] sm:leading-tight">

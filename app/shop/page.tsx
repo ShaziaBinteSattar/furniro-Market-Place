@@ -155,7 +155,6 @@ const page = () => {
           image: image3.src,
         },
       
-        // Add other products...
       ];
 
   return (

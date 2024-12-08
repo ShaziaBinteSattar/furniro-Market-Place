@@ -27,7 +27,7 @@ const page = () => {
         <div className='w-full   md:w-1/3 space-y-8'> 
 
           <div className='flex   items-start gap-4'>
-            <FaLocationDot className='text-orange-700 text-xl mt-1'/>
+            <FaLocationDot className='text-orange-700  text-xl mt-1'/>
             <div>
               <h2 className='font-semibold text-gray-900 mb-2'>Address</h2>
               <p className='text-gray-600'>236 5th SE Avenue, New York NY10000, United States</p>
@@ -72,7 +72,7 @@ const page = () => {
                 type="text"
                 name="name"
                 id="name"
-                className='h-8 rounded-lg border-2 w-full'
+                className='h-10 rounded-lg border-2 w-3/4'
                 placeholder='Your Name'
                 required
               />
@@ -84,7 +84,7 @@ const page = () => {
                 type="email"
                 name="email"
                 id="email"
-                className='h-8 rounded-lg border-2 w-full'
+                className='h-10 rounded-lg border-2 w-3/4'
                 placeholder='Your Email'
                 required
               />
@@ -96,7 +96,7 @@ const page = () => {
                 type="text"
                 name="subject"
                 id="subject"
-                className='h-8 rounded-lg border-2 w-full'
+                className='h-10 rounded-lg border-2 w-3/4'
                 placeholder='Subject'
                 required
               />
@@ -107,7 +107,7 @@ const page = () => {
               <textarea 
                 name="message"
                 id="message"
-                className='h-20 rounded-lg border-2 w-full'
+                className='h-20  rounded-lg border-2 w-3/4'
                 placeholder='Your Message'
                 required
               />
