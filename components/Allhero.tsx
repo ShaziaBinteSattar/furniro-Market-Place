@@ -1,7 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
 
-const Allhero = ({ src,page }:{src:any,page:string}) => {
+interface AllHeroProps {
+  src: { src: string };
+  page: string;
+}
+
+const Allhero: React.FC<AllHeroProps> = ({ src, page }) => {
   return (
     <div className="relative w-full h-[316px]">
       <div className="w-full h-full">
