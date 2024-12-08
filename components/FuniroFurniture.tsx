@@ -10,15 +10,12 @@ import image6 from '@/public/assets/Rectangle 45.png'
 const FuniroFurniture = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 py-12">
-      {/* Header */}
       <div className="text-center mb-10">
         <p className="text-gray-600">Share your setup with</p>
         <h2 className="text-3xl font-bold">#FuniroFurniture</h2>
       </div>
 
-      {/* Image Gallery Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* You'll need to add your actual images and optimize them */}
         <div className="grid gap-4">
           <div className="h-[300px] relative">
             <Image 
