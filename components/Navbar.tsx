@@ -9,9 +9,18 @@ import { FiAlignRight } from "react-icons/fi";
 
 import Image from 'next/image';
 import Link from 'next/link'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [heartCount, setHeartCount] = useState(0);
 
   return (
     <nav>
@@ -38,15 +47,56 @@ const Navbar = () => {
           <div>
             <Image src={acounticon} className='cursor-pointer hover:scale-105' width={25} height={30} alt='account'/>
           </div>
-          <div>
-            <Image src={searchicon} className='cursor-pointer hover:scale-105' width={25} height={30} alt='search'/>
+          <div className="relative">
+            <Image 
+              src={searchicon} 
+              className='cursor-pointer hover:scale-105' 
+              width={25} 
+              height={30} 
+              alt='search'
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+            />
+            {isSearchOpen && (
+              <div className="absolute right-0 mt-2 w-64">
+                <input 
+                  type="text" 
+                  placeholder="Search..." 
+                  className="w-full p-2 border rounded-md shadow-lg"
+                />
+              </div>
+            )}
           </div>
-          <div>
-            <Image src={hearticon} className='cursor-pointer hover:scale-105' width={25} height={30} alt='favorites'/>
+          <div className="relative">
+            <Image 
+              src={hearticon} 
+              className='cursor-pointer hover:scale-105' 
+              width={25} 
+              height={30} 
+              alt='favorites'
+              onClick={() => setHeartCount(prev => prev + 1)}
+            />
+            {heartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                {heartCount}
+              </span>
+            )}
           </div>
-          <div>
-            <Image src={carticon} className='cursor-pointer hover:scale-105' width={25} height={30} alt='cart'/>
-          </div>
+          <Sheet>
+            <SheetTrigger asChild>
+              <div>
+                <Image src={carticon} className='cursor-pointer hover:scale-105' width={25} height={30} alt='cart'/>
+              </div>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Shopping Cart</SheetTitle>
+              </SheetHeader>
+              <div className="mt-4">
+
+                <p>Your cart is empty</p>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>
