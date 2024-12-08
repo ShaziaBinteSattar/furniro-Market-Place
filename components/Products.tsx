@@ -6,6 +6,7 @@ import image4 from '@/public/assets/Images (2).png'
 import image5 from '@/public/assets/image 6.png'
 import image6 from '@/public/assets/image 8.png'
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Product {
   id: number;
@@ -104,9 +105,11 @@ const Products = () => {
           >
             <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
               <div className="space-y-3 px-4">
-                <button className="w-full bg-white text-gray-900 py-2 rounded hover:bg-gray-100 transition-colors">
-                  Add to cart
-                </button>
+                <Link href={`/shop/${product.id}`}>
+                  <button className="w-full bg-white text-gray-900 py-2 rounded hover:bg-gray-100 transition-colors">
+                    Add to cart
+                  </button>
+                </Link>
                 
                 <div className="flex justify-center gap-6 text-white">
                   <button className="flex items-center gap-1 hover:text-gray-200">

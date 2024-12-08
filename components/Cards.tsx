@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 
 interface Product {
@@ -26,9 +27,11 @@ const Cards = ({products}:{products:Product[]}) => {
           >
             <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
               <div className="space-y-3 px-4">
-                <button className="w-full bg-white text-gray-900 py-2 rounded hover:bg-gray-100 transition-colors">
-                  Add to cart
-                </button>
+              <Link href={`/shop/${product.id}`}>
+                  <button className="w-full bg-white text-gray-900 py-2 rounded hover:bg-gray-100 transition-colors">
+                    Add to cart
+                  </button>
+                </Link>
                 
                 <div className="flex justify-center gap-6 text-white">
                   <button className="flex items-center gap-1 hover:text-gray-200">
