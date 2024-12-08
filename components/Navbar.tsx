@@ -57,7 +57,7 @@ const Navbar = () => {
               onClick={() => setIsSearchOpen(!isSearchOpen)}
             />
             {isSearchOpen && (
-              <div className="absolute right-0 mt-2 w-64">
+              <div className="absolute z-10 right-0 mt-2 w-64">
                 <input 
                   type="text" 
                   placeholder="Search..." 
