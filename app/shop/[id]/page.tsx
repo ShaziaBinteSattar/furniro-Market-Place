@@ -14,6 +14,7 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Cards from '@/components/Cards';
 import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
 
 const SingleProduct = () => {
 
@@ -246,6 +247,22 @@ const SingleProduct = () => {
   const colorOptions = ['#6B7FB7', '#986B9C', '#A48D6B'];
   const sizeOptions = ['L', 'XL', 'XS'];
 
+  // Add state for quantity
+  const [quantity, setQuantity] = React.useState(1);
+
+  // Add to cart handler
+  const handleAddToCart = () => {
+    console.log("click buton");
+    
+    toast.success(`Added ${quantity} ${product?.name} to cart`, {
+      description: `Quantity: ${quantity}`,
+      action: {
+        label: "View Cart",
+        onClick: () => console.log("View cart clicked"),
+      },
+    });
+  };
+
   if (!product) {
     return (
       <>
@@ -260,8 +277,8 @@ const SingleProduct = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex items-center gap-3 text-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+        <div className="flex flex-wrap items-center gap-3 text-sm">
           <Link href="/" className="text-gray-600 hover:text-orange-500">Home</Link>
           <span className="text-gray-400">/</span>
           <Link href="/shop" className="text-gray-600 hover:text-orange-500">Shop</Link>
@@ -270,9 +287,9 @@ const SingleProduct = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-gray-100">
             <Image
               src={product.image || '/placeholder.jpg'}
               alt={product.name}
@@ -292,7 +309,7 @@ const SingleProduct = () => {
             )}
           </div>
 
-          <div className="flex flex-col space-y-8">
+          <div className="flex flex-col space-y-6 sm:space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl font-bold text-gray-900">{product.name}</h1>
               <div className="flex items-center gap-3">
@@ -346,33 +363,43 @@ const SingleProduct = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
-              <div className="flex border-2 rounded-lg overflow-hidden">
-                <button className="px-4 py-3 hover:bg-gray-100 transition-colors">-</button>
-                <input type="text" value="1" className="w-16 text-center border-x-2" />
-                <button className="px-4 py-3 hover:bg-gray-100 transition-colors">+</button>
+            <div className="flex flex- sm: items-stretch sm:items-center gap-4">
+              <div className="flex  border-2 rounded-lg overflow-hidden">
+                <button 
+                  className="px-4 py-3 hover:bg-gray-100 transition-colors"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                >
+                  -
+                </button>
+                <input 
+                  type="text" 
+                  value={quantity} 
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                  className="md:w-16 w-10 text-center border-x-2" 
+                />
+                <button 
+                  className="px-4 py-3 hover:bg-gray-100 transition-colors"
+                  onClick={() => setQuantity(quantity + 1)}
+                >
+                  +
+                </button>
               </div>
-              <button  
-      onClick={() =>
-        toast("Event has been created", {
-          description: "Sunday, December 03, 2023 at 9:00 AM",
-          action: {
-            label: "Undo",
-            onClick: () => console.log("Undo"),
-          },
-        })
-      } className="flex-1 bg-orange-500 text-white py-3 px-6 rounded-lg
-                hover:bg-orange-600 transition-colors font-medium">
+              <Button  
+      variant="outline"
+      onClick={handleAddToCart}
+                className="flex-1 bg-orange-500 text-white py-6 px-6 rounded-lg
+                  hover:bg-orange-600 transition-colors font-medium"
+              >
                 Add To Cart
-              </button>
+              </Button>
               <button className="px-4 py-3 border-2 rounded-lg hover:bg-gray-50 transition-colors">
                 ♡
               </button>
             </div>
 
-            <div className="flex items-center  gap-4 pt-6 border-t">
+            <div className="flex flex-wrap items-center gap-4 pt-6 border-t">
               <span className="text-sm font-medium text-gray-700">Share:</span>
-              <div className="flex items-center justify-center gap-6 ">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                 {['Facebook', 'Twitter', 'Instagram'].map((social) => (
                   <div className='flex items-center justify-center gap-1'>
                     <button key={social} 
@@ -385,9 +412,8 @@ const SingleProduct = () => {
           </div>
         </div>
 
-        {/* Enhanced tabbed section */}
-        <div className="mt-16">
-          <div className="border-b flex gap-8">
+        <div className="mt-12 sm:mt-16">
+          <div className="border-b flex flex-wrap gap-4 sm:gap-8">
             <button className="px-6 py-3 border-b-2 border-orange-500 font-medium text-orange-500">
               Description
             </button>
@@ -405,7 +431,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
-      <div className='m-10 text-center'>
+      <div className='m-4 sm:m-10 text-center'>
         
        <h1 className='text-3xl m-10 font-bold'>
         
