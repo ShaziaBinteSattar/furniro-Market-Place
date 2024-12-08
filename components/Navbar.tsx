@@ -25,26 +25,26 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className={`${isMenuOpen ? 'flex  bg-zinc-300' : 'hidden'} md:flex flex-col md:flex-row w-full md:w-2/3 justify-around px-10 gap-4 md:gap-0`}>
-          <a href="">Home</a>
-          <a href="">Shop</a>
-          <a href="">Blog</a>
-          <a href="">Contact</a>
+        <div className={`${isMenuOpen ? 'flex  bg-zinc-300 p-2  rounded-lg shadow-lg' : 'hidden'} md:flex flex-col md:flex-row w-full md:w-2/3 justify-around px-10 gap-4 md:gap-0`}>
+          <a href="/" className='hover:underline-offset-4  hover:underline  hover:scale-105'>Home</a>
+          <a href="/shop" className='hover:underline-offset-4  hover:underline hover:scale-105 '>Shop</a>
+          <a href="/blog" className='hover:underline-offset-4  hover:underline hover:scale-105'>Blog</a>
+          <a href="/contect" className='hover:underline-offset-4  hover:underline hover:scale-105'>Contact</a>
         </div>
        
 
         <div className='flex justify-center md:justify-between w-full md:w-1/3 px-4 md:px-10 gap-6 md:gap-0'>
           <div>
-            <Image src={acounticon} width={25} height={30} alt='account'/>
+            <Image src={acounticon} className='cursor-pointer hover:scale-105' width={25} height={30} alt='account'/>
           </div>
           <div>
-            <Image src={searchicon} width={25} height={30} alt='search'/>
+            <Image src={searchicon} className='cursor-pointer hover:scale-105' width={25} height={30} alt='search'/>
           </div>
           <div>
-            <Image src={hearticon} width={25} height={30} alt='favorites'/>
+            <Image src={hearticon} className='cursor-pointer hover:scale-105' width={25} height={30} alt='favorites'/>
           </div>
           <div>
-            <Image src={carticon} width={25} height={30} alt='cart'/>
+            <Image src={carticon} className='cursor-pointer hover:scale-105' width={25} height={30} alt='cart'/>
           </div>
         </div>
       </div>

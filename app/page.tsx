@@ -1,4 +1,5 @@
 import Footer from '@/components/Footer'
+import FuniroFurniture from '@/components/FuniroFurniture'
 import Hero from '@/components/Hero'
 import Navbar from '@/components/Navbar'
 import Products from '@/components/Products'
@@ -16,6 +17,7 @@ const page = () => {
     <Range/>
     <Products/>
     <RoomIspirations/>
+    <FuniroFurniture/>
     <Footer/>
     {/* <Signin/> */}
     {/* <Signup/> */}

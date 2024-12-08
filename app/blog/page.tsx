@@ -7,7 +7,7 @@ const page = () => {
   return (
     <>
     <Navbar/>
-    <Allhero src={backgroundimage} page='Contect'/>
+    <Allhero src={backgroundimage} page='Blog'/>
 
     <div>page</div>
     </>
