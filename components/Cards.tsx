@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 
 interface Product {
@@ -44,9 +45,11 @@ const Cards = ({products}:{products:Product[]}) => {
             </div>
 
             <div className="relative aspect-square">
-              <img 
-                src={product.image} 
-                alt={product.name} 
+              <Image 
+                src={product.image || '/placeholder.jpg'}
+                alt={product.name}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 className="w-full h-full object-cover"
               />
               {product.discount && (

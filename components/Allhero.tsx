@@ -16,7 +16,7 @@ const Allhero = ({ src,page }:{src:any,page:string}) => {
       </div>
       <div className='absolute inset-0 flex flex-col space-y-2 items-center justify-center'>
         <h1 className='text-4xl font-bold'>{page}</h1>
-        <p>Home > {page}</p>
+        <p>Home / {page}</p>
       </div>
     </div>
   )

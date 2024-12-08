@@ -8,6 +8,7 @@ import logo from '@/public/assets/Frame 168.png'
 import { FiAlignRight } from "react-icons/fi";
 
 import Image from 'next/image';
+import Link from 'next/link'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,10 +27,10 @@ const Navbar = () => {
         </div>
 
         <div className={`${isMenuOpen ? 'flex  bg-zinc-300 p-2  rounded-lg shadow-lg' : 'hidden'} md:flex flex-col md:flex-row w-full md:w-2/3 justify-around px-10 gap-4 md:gap-0`}>
-          <a href="/" className='hover:underline-offset-4  hover:underline  hover:scale-105'>Home</a>
-          <a href="/shop" className='hover:underline-offset-4  hover:underline hover:scale-105 '>Shop</a>
-          <a href="/blog" className='hover:underline-offset-4  hover:underline hover:scale-105'>Blog</a>
-          <a href="/contect" className='hover:underline-offset-4  hover:underline hover:scale-105'>Contact</a>
+          <Link href="/" className='hover:underline-offset-4  hover:underline  hover:scale-105'>Home</Link>
+          <Link href="/shop" className='hover:underline-offset-4  hover:underline hover:scale-105 '>Shop</Link>
+          <Link href="/blog" className='hover:underline-offset-4  hover:underline hover:scale-105'>Blog</Link>
+          <Link href="/contect" className='hover:underline-offset-4  hover:underline hover:scale-105'>Contact</Link>
         </div>
        
 

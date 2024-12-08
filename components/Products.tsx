@@ -5,6 +5,7 @@ import image3 from '@/public/assets/image 1.png'
 import image4 from '@/public/assets/Images (2).png'
 import image5 from '@/public/assets/image 6.png'
 import image6 from '@/public/assets/image 8.png'
+import Image from 'next/image';
 
 interface Product {
   id: number;
@@ -122,9 +123,11 @@ const Products = () => {
             </div>
 
             <div className="relative aspect-square">
-              <img 
-                src={product.image} 
-                alt={product.name} 
+              <Image 
+                src={product.image || '/placeholder.jpg'} // Add fallback image
+                alt={product.name}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 className="w-full h-full object-cover"
               />
               {product.discount && (
