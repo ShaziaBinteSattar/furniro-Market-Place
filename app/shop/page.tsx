@@ -1,3 +1,4 @@
+"use client"
 import Allhero from '@/components/Allhero'
 import Navbar from '@/components/Navbar'
 import React from 'react'
@@ -20,6 +21,8 @@ import image6 from '@/public/assets/image 8.png'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
 import Banifits from '@/components/Banifits'
+import { Provider } from 'react-redux'
+import store from '../reduxconfig/store/store'
 
 
 
@@ -159,6 +162,8 @@ const page = () => {
 
   return (
     <>
+                <Provider store={store}>
+
     <Navbar/>
     <Allhero src={backgroundimage} page='Shop'/>
 
@@ -197,6 +202,8 @@ const page = () => {
     </div>
 <Banifits/>
     <Footer/>
+    </Provider>
+
     </>
   )
 }

@@ -5,7 +5,12 @@ const cartSlice =  createSlice(
         name:"cart",
         initialState:{
             cartItems:[{
-                name:"farhan",
+                id: 1,
+                name: 'Slytherine',
+                description: 'Stylish cafe chair',
+                price: 2500000,
+                originalPrice: 3500000,
+                discount: 30,
                 quantity:2
             }]
         },

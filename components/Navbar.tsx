@@ -19,17 +19,24 @@ import {
 } from "@/components/ui/sheet"
 import { getTotalItems } from '@/app/reduxconfig/reducer/cartSlice'
 
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  originalPrice?: number;
-  discount?: number;
-  image?: string ;
-  isNew?: boolean;
-  quantity:number
-}
+
+  interface Product {
+    id: number;                // Unique identifier for the product
+    name: string;              // Name of the product
+    description: string;       // Description of the product
+    price: number;             // Current price of the product
+    originalPrice?: number;    // (Optional) Original price before discount
+    discount?: number;         // (Optional) Discount percentage
+    image?: string;            // (Optional) URL or path of the product image
+    isNew?: boolean;           // (Optional) Indicates if the product is new
+    additionalInfo?: string;   // (Optional) Additional details about the product
+    category?: string;         // (Optional) Product category (e.g., "Furniture > Chairs")
+    tags?: string[];           // (Optional) Array of tags for product classification
+    quantity?:number; 
+    colorOptions?:string;
+    sizeOptions?:string
+  }
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,7 +44,7 @@ const Navbar = () => {
   const [heartCount, setHeartCount] = useState(0);
   const dispach = useDispatch()
   const cartItems = useSelector((state:any) => state.cart.cartItems);
-  const totalItems = cartItems.reduce((total:number, item:Product) => total + item.quantity, 0);
+  const totalItems = cartItems.reduce((total:number, item:any) => total + item.quantity, 0);
 
 console.log(cartItems);
 

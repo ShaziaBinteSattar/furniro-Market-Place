@@ -15,6 +15,9 @@ import Link from 'next/link';
 import Cards from '@/components/Cards';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import { Provider, useDispatch } from 'react-redux';
+import { addToCart } from '@/app/reduxconfig/reducer/cartSlice';
+import store from '@/app/reduxconfig/store/store';
 
 const SingleProduct = () => {
 
@@ -240,19 +243,27 @@ const SingleProduct = () => {
 
 
 
+    const dispatch = useDispatch()
   const { id } = useParams();
   const product = products.find(p => p.id === Number(id));
 
   // Add color and size options
   const colorOptions = ['#6B7FB7', '#986B9C', '#A48D6B'];
   const sizeOptions = ['L', 'XL', 'XS'];
-
   // Add state for quantity
   const [quantity, setQuantity] = React.useState(1);
 
   // Add to cart handler
   const handleAddToCart = () => {
     console.log("click buton");
+
+    dispatch(addToCart({
+      ...product,
+      quantity,
+      colorOptions,
+      sizeOptions
+    }))
+
     
     toast.success(`Added ${quantity} ${product?.name} to cart`, {
       description: `Quantity: ${quantity}`,
@@ -266,16 +277,22 @@ const SingleProduct = () => {
   if (!product) {
     return (
       <>
+                <Provider store={store}>
+
         <Navbar />
         <div className="text-center py-12">Product not found</div>
         <Banifits/>
         <Footer />
+        </Provider>
+
       </>
     );
   }
 
   return (
     <>
+                <Provider store={store}>
+
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         <div className="flex flex-wrap items-center gap-3 text-sm">
@@ -442,6 +459,8 @@ const SingleProduct = () => {
       </div>
       <Banifits />
       <Footer />
+      </Provider>
+
     </>
   );
 };
