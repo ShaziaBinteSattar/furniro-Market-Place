@@ -11,6 +11,7 @@ interface Product {
     discount?: number;
     image?: string ;
     isNew?: boolean;
+    quantity?:number;
   }
 const Cards = ({products}:{products:Product[]}) => {
   return (

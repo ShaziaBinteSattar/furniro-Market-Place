@@ -9,6 +9,7 @@ import { FiAlignRight } from "react-icons/fi";
 
 import Image from 'next/image';
 import Link from 'next/link'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Sheet,
   SheetContent,
@@ -16,11 +17,29 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { getTotalItems } from '@/app/reduxconfig/reducer/cartSlice'
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  originalPrice?: number;
+  discount?: number;
+  image?: string ;
+  isNew?: boolean;
+  quantity:number
+}
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [heartCount, setHeartCount] = useState(0);
+  const dispach = useDispatch()
+  const cartItems = useSelector((state:any) => state.cart.cartItems);
+  const totalItems = cartItems.reduce((total:number, item:Product) => total + item.quantity, 0);
+
+console.log(cartItems);
 
   return (
     <nav>
@@ -91,10 +110,19 @@ const Navbar = () => {
               <SheetHeader>
                 <SheetTitle>Shopping Cart</SheetTitle>
               </SheetHeader>
-              <div className="mt-4">
+              {cartItems.length > 0 ? 
+    
+    <div className='m-4'>
+<p>cart if loading {totalItems} </p>
+    </div>
+      
+      
+      
+      :<div className="mt-4">
 
-                <p>Your cart is empty</p>
-              </div>
+              <p>Your cart is empty</p>
+            </div>}
+              
             </SheetContent>
           </Sheet>
         </div>
