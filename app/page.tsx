@@ -13,7 +13,6 @@ import store from './reduxconfig/store/store'
 const page = () => {
   return (
     <>
-            <Provider store={store}>
 
     <Navbar/>
     <Hero/>
@@ -22,7 +21,6 @@ const page = () => {
     <RoomIspirations/>
     <FuniroFurniture/>
     <Footer/>
-              </Provider>
     </>
   )
 }

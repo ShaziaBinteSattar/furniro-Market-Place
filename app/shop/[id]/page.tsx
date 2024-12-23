@@ -243,7 +243,7 @@ const SingleProduct = () => {
 
 
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
   const { id } = useParams();
   const product = products.find(p => p.id === Number(id));
 
@@ -257,12 +257,12 @@ const SingleProduct = () => {
   const handleAddToCart = () => {
     console.log("click buton");
 
-    dispatch(addToCart({
-      ...product,
-      quantity,
-      colorOptions,
-      sizeOptions
-    }))
+    // dispatch(addToCart({
+    //   ...product,
+    //   quantity,
+    //   colorOptions,
+    //   sizeOptions
+    // }))
 
     
     toast.success(`Added ${quantity} ${product?.name} to cart`, {
