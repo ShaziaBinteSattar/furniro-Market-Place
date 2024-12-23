@@ -1,12 +1,11 @@
+// app/layout.tsx
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Toaster } from 'sonner';
-import {Provider} from 'react-redux'
-import store from "./reduxconfig/store/store";
+import ClientSideProvider from "../components/ClientSideProvider"; // Import your client-side component
 
-
-
+// Fonts
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -30,13 +29,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" href="favicon.ico" type="image/x-icon"></link>
+      <head>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-
-        {children}
-        <Toaster />
+        <ClientSideProvider>{children}</ClientSideProvider> {/* Wrap your children with ClientSideProvider */}
       </body>
     </html>
   );

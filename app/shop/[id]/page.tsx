@@ -15,8 +15,8 @@ import Link from 'next/link';
 import Cards from '@/components/Cards';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
-import { Provider, useDispatch } from 'react-redux';
-import { addToCart } from '@/app/reduxconfig/reducer/cartSlice';
+import {  useDispatch } from 'react-redux';
+import { addToCart } from '@/app/reduxconfig/reducer/cartSlice.js';
 import store from '@/app/reduxconfig/store/store';
 
 const SingleProduct = () => {
@@ -243,7 +243,7 @@ const SingleProduct = () => {
 
 
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
   const { id } = useParams();
   const product = products.find(p => p.id === Number(id));
 
@@ -257,12 +257,12 @@ const SingleProduct = () => {
   const handleAddToCart = () => {
     console.log("click buton");
 
-    // dispatch(addToCart({
-    //   ...product,
-    //   quantity,
-    //   colorOptions,
-    //   sizeOptions
-    // }))
+    dispatch(addToCart({
+      ...product,
+      quantity,
+      colorOptions,
+      sizeOptions
+    }))
 
     
     toast.success(`Added ${quantity} ${product?.name} to cart`, {
@@ -277,13 +277,11 @@ const SingleProduct = () => {
   if (!product) {
     return (
       <>
-                <Provider store={store}>
 
         <Navbar />
         <div className="text-center py-12">Product not found</div>
         <Banifits/>
         <Footer />
-        </Provider>
 
       </>
     );
@@ -291,7 +289,6 @@ const SingleProduct = () => {
 
   return (
     <>
-                <Provider store={store}>
 
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
@@ -459,7 +456,6 @@ const SingleProduct = () => {
       </div>
       <Banifits />
       <Footer />
-      </Provider>
 
     </>
   );

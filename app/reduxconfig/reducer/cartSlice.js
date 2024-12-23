@@ -4,23 +4,17 @@ const cartSlice =  createSlice(
     {
         name:"cart",
         initialState:{
-            cartItems:[{
-                id: 1,
-                name: 'Slytherine',
-                description: 'Stylish cafe chair',
-                price: 2500000,
-                originalPrice: 3500000,
-                discount: 30,
-                quantity:2
-            }]
+            cartItems:[]
         },
         reducers:{
             addToCart: (state, action) => {
                 const existingItem = state.cartItems.find((item) => item.id === action.payload.id);
                 if (existingItem) {
-                  existingItem.quantity += 1;
+                  existingItem.quantity = action.payload.quantity;
+                  console.log("already");
+                  
                 } else {
-                  state.cartItems.push({ ...action.payload, quantity: 1 });
+                  state.cartItems.push({ ...action.payload });
                 }},
             removeToCart:(state,action)=>{
                 state.cartItems = state.cartItems.filter((item)=>item.id !== action.payload.id)
