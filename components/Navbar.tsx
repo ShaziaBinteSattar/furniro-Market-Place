@@ -23,19 +23,34 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  originalPrice?: number;
+  discount?: number;
+  image?: string ;
+  isNew?: boolean;
+  quantity:number;
+  quantityprice:number
+
+}
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [heartCount, setHeartCount] = useState(0);
 
   const dispatch = useDispatch();
-  const cartItems = useSelector((state: any) => state.cart.cartItems);
+  const cartItems: Product[] = useSelector((state: { cart: { cartItems: Product[] } }) => state.cart.cartItems);
   const totalItems = cartItems.reduce(
-    (total: number, item: any) => total + item.quantity,
+    (total: number, item: Product) => total + item.quantity,
     0
   );
   const totalPrice = cartItems.reduce(
-    (total: number, item: any) => total + item.quantityprice,
+    (total: number, item: Product) => total + item.quantityprice,
     0
   );
 
@@ -173,12 +188,13 @@ return (
   <div className=" h-screen overflow-auto pb-20 scroll-smooth ">
 
   {cartItems.length > 0 ? (
-    cartItems.map((item:any) => ( 
+    cartItems.map((item:Product) => ( 
 
       <div key={item.id} className=" items-center justify-between bg-white shadow-sm rounded-lg p-4 mb-4">
         <div className="flex items-center space-x-4">
           <div>
-            <Image src={item.image} width={80} height={50} alt={item.id} className="border"/>
+            <Image   src={item.image || "/path/to/default-image.png"}
+ width={80} height={50}  alt={item.name || "Product"} className="border"/>
           </div>
           <div>
             <p className="text-lg font-medium">{item.name}</p>
@@ -224,6 +240,13 @@ return (
 <div  className="flex flex-col w-full justify-end   bg--500">
        <div className="mt-20  flex flex-col gap-5 bg--300 ">
        
+         <div className="flex w-full justify-between ">
+
+
+          <h1>Total Quantity</h1>
+          <h1>{totalItems}</h1>
+         </div>
+
          <div className="flex w-full justify-between ">
 
 

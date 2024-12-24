@@ -7,8 +7,6 @@ import Products from '@/components/Products'
 import Range from '@/components/Range'
 import RoomIspirations from '@/components/RoomIspirations'
 import React from 'react'
-import { Provider } from 'react-redux'
-import store from './reduxconfig/store/store'
 
 const page = () => {
   return (
