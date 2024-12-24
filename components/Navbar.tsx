@@ -218,15 +218,12 @@ return (
       <p>Your cart is empty</p>
     </div>
   )}
-  {cartItems.length > 0 && 
 
-<div className="flex flex-col w-full justify-end   bg--500">
+
+  {cartItems.length > 0 && 
+<div  className="flex flex-col w-full justify-end   bg--500">
        <div className="mt-20  flex flex-col gap-5 bg--300 ">
-       <div className="flex w-full justify-between ">
-          <h1>Total Quantity</h1>
-          <h1>{totalItems} x {cartItems.price}</h1>
-          
-        </div>
+       
          <div className="flex w-full justify-between ">
 
 
@@ -238,8 +235,10 @@ return (
         </div>
 
       </div>
+      
+
 }
-      </div>
+</div>
 </SheetContent>
 
           </Sheet>
@@ -248,5 +247,4 @@ return (
     </nav>
   );
 };
-
 export default Navbar;
