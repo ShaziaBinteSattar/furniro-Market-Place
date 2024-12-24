@@ -34,8 +34,12 @@ const Navbar = () => {
     (total: number, item: any) => total + item.quantity,
     0
   );
+  const totalPrice = cartItems.reduce(
+    (total: number, item: any) => total + item.quantityprice,
+    0
+  );
 
-  console.log(cartItems);
+  console.log(totalPrice);
   
 const deleteToCart = (id:number)=>{
 
@@ -200,7 +204,7 @@ return (
         </div>
         <div className="w-full items-center">
 
-        <h1 className="font-bold">Rs : {item.price*item.quantity}</h1>
+        <h1 className="font-bold">Rs : {item.price}</h1>
         </div>
         <FaTrash  onClick={() => deleteToCart(item.id)} className="text-3xl text-red-500 cursor-pointer"          />
        
@@ -218,10 +222,16 @@ return (
 
 <div className="flex flex-col w-full justify-end   bg--500">
        <div className="mt-20  flex flex-col gap-5 bg--300 ">
+       <div className="flex w-full justify-between ">
+          <h1>Total Quantity</h1>
+          <h1>{totalItems} x {cartItems.price}</h1>
+          
+        </div>
          <div className="flex w-full justify-between ">
 
+
           <h1>Total Amount</h1>
-          <h1>RS : 250000</h1>
+          <h1>RS : {totalPrice}</h1>
          </div>
           
          <button className="bg-red-500  w-full py-2 rounded-xl ">CheckOut</button>
