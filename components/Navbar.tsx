@@ -42,7 +42,25 @@ const deleteToCart = (id:number)=>{
   dispatch(removeToCart({id}))
 }
 
-  return (
+
+const increasQuantity = (id:number)=>{
+
+   dispatch(increaseQuantity({id}))
+  console.log(id);
+  
+
+}
+const decreasQuantity =(id:number)=>{
+
+  dispatch(decreaseQuantity({id}))
+  console.log(id);
+  
+
+}
+
+
+
+return (
     <nav>
       <div className="p-5 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-5">
         <div className="w-full  md:w-1/3 flex justify-between items-center md:justify-start px-4">
@@ -167,14 +185,14 @@ const deleteToCart = (id:number)=>{
         <div className="flex items-center space-x-4">
 
           <button
-            onClick={() => decreaseQuantity(item.id)}
+            onClick={() => decreasQuantity(item.id)}
             className="px-2 py-1 bg-gray-200 text-gray-600 rounded hover:bg-gray-300"
             >
             -
           </button>
           <span className="text-lg font-medium">{item.quantity}</span>
           <button
-            onClick={() => increaseQuantity(item.id)}
+            onClick={() => increasQuantity(item.id)}
             className="px-2 py-1 bg-gray-200 text-gray-600 rounded hover:bg-gray-300"
             >
             +
