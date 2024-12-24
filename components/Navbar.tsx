@@ -12,8 +12,11 @@ import { FaTrash } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import {decreaseQuantity, increaseQuantity, removeToCart} from "@/app/reduxconfig/reducer/cartSlice.js"
-
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeToCart,
+} from "@/app/reduxconfig/reducer/cartSlice.js";
 
 import {
   Sheet,
@@ -23,7 +26,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-
 interface Product {
   id: number;
   name: string;
@@ -31,11 +33,10 @@ interface Product {
   price: number;
   originalPrice?: number;
   discount?: number;
-  image?: string ;
+  image?: string;
   isNew?: boolean;
-  quantity:number;
-  quantityprice:number
-
+  quantity: number;
+  quantityprice: number;
 }
 
 const Navbar = () => {
@@ -44,7 +45,9 @@ const Navbar = () => {
   const [heartCount, setHeartCount] = useState(0);
 
   const dispatch = useDispatch();
-  const cartItems: Product[] = useSelector((state: { cart: { cartItems: Product[] } }) => state.cart.cartItems);
+  const cartItems: Product[] = useSelector(
+    (state: { cart: { cartItems: Product[] } }) => state.cart.cartItems
+  );
   const totalItems = cartItems.reduce(
     (total: number, item: Product) => total + item.quantity,
     0
@@ -55,31 +58,21 @@ const Navbar = () => {
   );
 
   console.log(totalPrice);
-  
-const deleteToCart = (id:number)=>{
 
-  dispatch(removeToCart({id}))
-}
+  const deleteToCart = (id: number) => {
+    dispatch(removeToCart({ id }));
+  };
 
+  const increasQuantity = (id: number) => {
+    dispatch(increaseQuantity({ id }));
+    console.log(id);
+  };
+  const decreasQuantity = (id: number) => {
+    dispatch(decreaseQuantity({ id }));
+    console.log(id);
+  };
 
-const increasQuantity = (id:number)=>{
-
-   dispatch(increaseQuantity({id}))
-  console.log(id);
-  
-
-}
-const decreasQuantity =(id:number)=>{
-
-  dispatch(decreaseQuantity({id}))
-  console.log(id);
-  
-
-}
-
-
-
-return (
+  return (
     <nav>
       <div className="p-5 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-5">
         <div className="w-full  md:w-1/3 flex justify-between items-center md:justify-start px-4">
@@ -182,88 +175,90 @@ return (
               </div>
             </SheetTrigger>
             <SheetContent>
-  <SheetHeader>
-    <SheetTitle className="text-xl font-semibold border-b pb-2 mb-4">Shopping Cart</SheetTitle>
-  </SheetHeader>
-  <div className=" h-screen overflow-auto pb-20 scroll-smooth ">
+              <SheetHeader>
+                <SheetTitle className="text-xl font-semibold border-b pb-2 mb-4">
+                  Shopping Cart
+                </SheetTitle>
+              </SheetHeader>
+              <div className=" h-screen overflow-auto pb-20 scroll-smooth ">
+                {cartItems.length > 0 ? (
+                  cartItems.map((item: Product) => (
+                    <div
+                      key={item.id}
+                      className=" items-center justify-between bg-white shadow-sm rounded-lg p-4 mb-4"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div>
+                          <Image
+                            src={item.image || "/path/to/default-image.png"}
+                            width={80}
+                            height={50}
+                            alt={item.name || "Product"}
+                            className="border"
+                          />
+                        </div>
+                        <div>
+                          <p className="text-lg font-medium">{item.name}</p>
+                          <p className="text-gray-500 text-sm">
+                            {item.description || "Product description"}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-4 mt-2">
+                        <div className="flex items-center space-x-4">
+                          <button
+                            onClick={() => decreasQuantity(item.id)}
+                            className="px-2 py-1 bg-gray-200 text-gray-600 rounded hover:bg-gray-300"
+                          >
+                            -
+                          </button>
+                          <span className="text-lg font-medium">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => increasQuantity(item.id)}
+                            className="px-2 py-1 bg-gray-200 text-gray-600 rounded hover:bg-gray-300"
+                          >
+                            +
+                          </button>
+                        </div>
+                        <div className="w-full items-center">
+                          <h1 className="font-bold">Rs : {item.price}</h1>
+                        </div>
+                        <FaTrash
+                          onClick={() => deleteToCart(item.id)}
+                          className="text-3xl text-red-500 cursor-pointer"
+                        />
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="mt-4 text-center text-gray-100">
+                    <p>Your cart is empty</p>
+                  </div>
+                )}
 
-  {cartItems.length > 0 ? (
-    cartItems.map((item:Product) => ( 
+                {cartItems.length > 0 && (
+                  <div className="flex flex-col w-full justify-end   bg--500">
+                    <div className="mt-20  flex flex-col gap-5 bg--300 ">
+                      <div className="flex w-full justify-between ">
+                        <h1>Total Quantity</h1>
+                        <h1>{totalItems}</h1>
+                      </div>
 
-      <div key={item.id} className=" items-center justify-between bg-white shadow-sm rounded-lg p-4 mb-4">
-        <div className="flex items-center space-x-4">
-          <div>
-            <Image   src={item.image || "/path/to/default-image.png"}
- width={80} height={50}  alt={item.name || "Product"} className="border"/>
-          </div>
-          <div>
-            <p className="text-lg font-medium">{item.name}</p>
-            <p className="text-gray-500 text-sm">{item.description || "Product description"}</p>
-          </div>
-        </div>
-        <div className="flex items-center space-x-4 mt-2">
-        <div className="flex items-center space-x-4">
+                      <div className="flex w-full justify-between ">
+                        <h1>Total Amount</h1>
+                        <h1>RS : {totalPrice}</h1>
+                      </div>
 
-          <button
-            onClick={() => decreasQuantity(item.id)}
-            className="px-2 py-1 bg-gray-200 text-gray-600 rounded hover:bg-gray-300"
-            >
-            -
-          </button>
-          <span className="text-lg font-medium">{item.quantity}</span>
-          <button
-            onClick={() => increasQuantity(item.id)}
-            className="px-2 py-1 bg-gray-200 text-gray-600 rounded hover:bg-gray-300"
-            >
-            +
-          </button>
-        </div>
-        <div className="w-full items-center">
-
-        <h1 className="font-bold">Rs : {item.price}</h1>
-        </div>
-        <FaTrash  onClick={() => deleteToCart(item.id)} className="text-3xl text-red-500 cursor-pointer"          />
-       
-            </div>
-      </div>
-      
-          
-    ))
-  ) : (
-    <div className="mt-4 text-center text-gray-100">
-      <p>Your cart is empty</p>
-    </div>
-  )}
-
-
-  {cartItems.length > 0 && 
-<div  className="flex flex-col w-full justify-end   bg--500">
-       <div className="mt-20  flex flex-col gap-5 bg--300 ">
-       
-         <div className="flex w-full justify-between ">
-
-
-          <h1>Total Quantity</h1>
-          <h1>{totalItems}</h1>
-         </div>
-
-         <div className="flex w-full justify-between ">
-
-
-          <h1>Total Amount</h1>
-          <h1>RS : {totalPrice}</h1>
-         </div>
-          
-         <button className="bg-red-500  w-full py-2 rounded-xl ">CheckOut</button>
-        </div>
-
-      </div>
-      
-
-}
-</div>
-</SheetContent>
-
+                      <button className="bg-red-500  w-full py-2 rounded-xl ">
+                        CheckOut
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </SheetContent>
           </Sheet>
         </div>
       </div>
