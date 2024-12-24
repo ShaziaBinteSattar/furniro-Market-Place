@@ -7,11 +7,14 @@ import hearticon from "@/public/assets/akar-icons_heart.png";
 import carticon from "@/public/assets/ant-design_shopping-cart-outlined.png";
 import logo from "@/public/assets/Frame 168.png";
 import { FiAlignRight } from "react-icons/fi";
+import { FaTrash } from "react-icons/fa6";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import {removeToCart} from '@/app/reduxconfig/reducer/cartSlice.js'
+import {removeToCart} from "@/app/reduxconfig/reducer/cartSlice.js"
+
+
 import {
   Sheet,
   SheetContent,
@@ -34,11 +37,9 @@ const Navbar = () => {
 
   console.log(cartItems);
   
-const deleteToCart = (id:String)=>{
+const deleteToCart = (id:number)=>{
 
-  dispatch(removeToCart({
-      id
-     }))
+  dispatch(removeToCart({id}))
 }
 
   return (
@@ -144,24 +145,75 @@ const deleteToCart = (id:String)=>{
               </div>
             </SheetTrigger>
             <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Shopping Cart</SheetTitle>
-              </SheetHeader>
-              {cartItems.length > 0 ? (<div>
+  <SheetHeader>
+    <SheetTitle className="text-xl font-semibold border-b pb-2 mb-4">Shopping Cart</SheetTitle>
+  </SheetHeader>
+  <div className=" h-screen overflow-auto pb-20 scroll-smooth ">
 
-                <div className="m-4">
-                  <p>Cart is loading {totalItems}</p>
-                </div>
-                <div>
-                  <button onClick={()=>deleteToCart(cartItems.id)}>delete</button>
-                </div>
-              </div>
-              ) : (
-                <div className="mt-4">
-                  <p>Your cart is empty</p>
-                </div>
-              )}
-            </SheetContent>
+  {cartItems.length > 0 ? (
+    cartItems.map((item:any) => ( 
+
+      <div key={item.id} className=" items-center justify-between bg-white shadow-sm rounded-lg p-4 mb-4">
+        <div className="flex items-center space-x-4">
+          <div>
+            <Image src={item.image} width={80} height={50} alt={item.id} className="border"/>
+          </div>
+          <div>
+            <p className="text-lg font-medium">{item.name}</p>
+            <p className="text-gray-500 text-sm">{item.description || "Product description"}</p>
+          </div>
+        </div>
+        <div className="flex items-center space-x-4 mt-2">
+        <div className="flex items-center space-x-4">
+
+          <button
+            onClick={() => decreaseQuantity(item.id)}
+            className="px-2 py-1 bg-gray-200 text-gray-600 rounded hover:bg-gray-300"
+            >
+            -
+          </button>
+          <span className="text-lg font-medium">{item.quantity}</span>
+          <button
+            onClick={() => increaseQuantity(item.id)}
+            className="px-2 py-1 bg-gray-200 text-gray-600 rounded hover:bg-gray-300"
+            >
+            +
+          </button>
+        </div>
+        <div className="w-full items-center">
+
+        <h1 className="font-bold">Rs : {item.price*item.quantity}</h1>
+        </div>
+        <FaTrash  onClick={() => deleteToCart(item.id)} className="text-3xl text-red-500 cursor-pointer"          />
+       
+            </div>
+      </div>
+      
+          
+    ))
+  ) : (
+    <div className="mt-4 text-center text-gray-100">
+      <p>Your cart is empty</p>
+    </div>
+  )}
+  {cartItems.length > 0 && 
+
+<div className="flex flex-col w-full justify-end   bg--500">
+       <div className="mt-20  flex flex-col gap-5 bg--300 ">
+         <div className="flex w-full justify-between ">
+
+          <h1>Total Amount</h1>
+          <h1>RS : 250000</h1>
+         </div>
+          
+         <button className="bg-red-500  w-full py-2 rounded-xl ">CheckOut</button>
+        </div>
+
+      </div>
+}
+      </div>
+</SheetContent>
+
           </Sheet>
         </div>
       </div>
