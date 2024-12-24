@@ -12,7 +12,7 @@ import { FaTrash } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import {removeToCart} from "@/app/reduxconfig/reducer/cartSlice.js"
+import {decreaseQuantity, increaseQuantity, removeToCart} from "@/app/reduxconfig/reducer/cartSlice.js"
 
 
 import {
